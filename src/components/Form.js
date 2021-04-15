@@ -1,34 +1,22 @@
 import React, {useState} from 'react'
 
-const Form = (props) => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");  
+const Form = ({message,setMessage}) => {
     
-    const createUser = (e) => {
-        e.preventDefault();
-        const newUser = { username, email, password };
-        console.log("Welcome", newUser);
-        // setUsername("")
-        // setEmail("")
-        // setPassword("")
-    };
+    
+    const formSubmit = (e) => {
+        e.preventDefault()
+        const newMessage = {message}
+        console.log(newMessage)
+        setMessage("");
+    } 
+
+
     
     return(
-        <form onSubmit={ createUser }>
-            <div>
-                <label>Username: </label> 
-                <input type="text" onChange={ (e) => setUsername(e.target.value)}  value={username} />
-            </div>
-            <div>
-                <label>Email Address: </label> 
-                <input type="text" onChange={ (e) => setEmail(e.target.value) } value={email}  />
-            </div>
-            <div>
-                <label>Password: </label>
-                <input type="text" onChange={ (e) => setPassword(e.target.value) } value={password}  />
-            </div>
-            <input type="submit" value="Create User" />
+        <form onSubmit={formSubmit} >
+            <label>Write Message here</label>
+            <input onChange={(e) => setMessage(e.target.value)} type="textArea" value={message}/>
+            <button type="submit">submit</button>
         </form>
     );
 }
